@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test_python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test_python
+  template:
+    metadata:
+      labels:
+        app: test_python
+    spec:
+      containers:
+      - name: test_python
+        image: tomerdar/test_app:python_test_app
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
